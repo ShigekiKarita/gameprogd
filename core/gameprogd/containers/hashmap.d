@@ -9,11 +9,11 @@ auto genHash(T : const(char)[])(T value) pure nothrow @nogc @trusted
     // import containers.internal.hash : generateHash;
     // return generateHash(value);
     hash_t h = 0xcbf29ce484222325;
-		foreach (const ubyte c; cast(ubyte[]) value)
-		{
+    foreach (const ubyte c; cast(ubyte[]) value)
+    {
         h ^= ((c - ' ') * 13);
         h *= 0x100000001b3;
-		}
+    }
     return h;
 }
 
