@@ -6,7 +6,7 @@ import bindbc.sdl;
 void main()
 {
     auto window = SDL_CreateWindow(
-        &"Game Programming in C++ (Chapter 1)"[0], // Window title
+        &"Game Programming in D (Chapter 1)"[0], // Window title
         100,	// Top left x-coordinate of window
         100,	// Top left y-coordinate of window
         1024,	// Width of window

@@ -2,11 +2,10 @@
 
 pingpong game
 
+## screen shot
 
-1. build 
-```bash
-git submodule update --init --recursive
-dub run
-```
-2. keys w: up, s: down, esc: quit
+![screen.png](screen.png)
+
+## keys
+w: up, s: down, esc: quit
 
