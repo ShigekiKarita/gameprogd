@@ -82,10 +82,11 @@ struct Game
             exit(1);
         }
         //
+        const size = this.windowSize();
         mPaddlePos.x = 10.0f;
-        mPaddlePos.y = 768.0f/2.0f;
-        mBallPos.x = 1024.0f/2.0f;
-        mBallPos.y = 768.0f/2.0f;
+        mPaddlePos.y = size.height / 2.0f;
+        mBallPos.x = size.width / 2.0f;
+        mBallPos.y = size.height / 2.0f;
         mBallVel.x = -200.0f;
         mBallVel.y = 235.0f;
     }
@@ -177,6 +178,7 @@ struct Game
         auto diff = mPaddlePos.y - mBallPos.y;
         // Take absolute value of difference
         diff = (diff > 0.0f) ? diff : -diff;
+        const size = this.windowSize();
         if (// Our y-difference is small enough
             diff <= paddleH / 2.0f &&
             // We are in the correct x-position
@@ -192,7 +194,7 @@ struct Game
             mIsRunning = false;
         }
         // Did the ball collide with the right wall?
-        else if (mBallPos.x >= (1024.0f - thickness) && mBallVel.x > 0.0f)
+        else if (mBallPos.x >= (size.width - thickness) && mBallVel.x > 0.0f)
         {
             mBallVel.x *= -1.0f;
         }
@@ -203,11 +205,19 @@ struct Game
             mBallVel.y *= -1;
         }
         // Did the ball collide with the bottom wall?
-        else if (mBallPos.y >= (768 - thickness) &&
+        else if (mBallPos.y >= (size.height - thickness) &&
                  mBallVel.y > 0.0f)
         {
             mBallVel.y *= -1;
         }
+    }
+
+    auto windowSize()
+    {
+        import std.typecons : tuple;
+        int w, h;
+        SDL_GetWindowSize(mWindow, &w, &h);
+        return tuple!("width", "height")(w, h);
     }
 
     void render()
@@ -216,7 +226,7 @@ struct Game
         SDL_SetRenderDrawColor(
             mRenderer,
             0,		// R
-            0,		// G 
+            0,		// G
             255,	// B
             255		// A
             );
@@ -226,24 +236,26 @@ struct Game
         // Draw walls
         SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 
+        const size = this.windowSize();
+
         // Draw top wall
         SDL_Rect wall = {
             0,			// Top left x
             0,			// Top left y
-            1024,		// Width
+            size.width,		// Width
             thickness	// Height
         };
         SDL_RenderFillRect(mRenderer, &wall);
 
         // Draw bottom wall
-        wall.y = 768 - thickness;
+        wall.y = size.height - thickness;
         SDL_RenderFillRect(mRenderer, &wall);
 
         // Draw right wall
-        wall.x = 1024 - thickness;
+        wall.x = size.width - thickness;
         wall.y = 0;
         wall.w = thickness;
-        wall.h = 1024;
+        wall.h = size.width;
         SDL_RenderFillRect(mRenderer, &wall);
 
         // Draw paddle

@@ -11,7 +11,7 @@ void main()
         100,	// Top left y-coordinate of window
         1024,	// Width of window
         768,	// Height of window
-        SDL_WINDOW_SHOWN // Flags (0 for no flags set)
+        SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
         );
 
     auto game = Game(window);
