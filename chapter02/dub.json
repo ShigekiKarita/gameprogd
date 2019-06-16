@@ -3,9 +3,10 @@
         "karita"
     ],
     "copyright": "Copyright © 2019, karita",
+    "importPaths": ["source", "../core"],
     "dependencies": {
         "bindbc-sdl": "~>0.9.1",
-        "emsi_containers": "~>0.7.0"
+        "emsi_containers": "~>0.8.0-alpha"
     },
     "versions": ["BindSDL_Static", "BindSDL_Image"],
     "libs": ["SDL2", "SDL2_image"],

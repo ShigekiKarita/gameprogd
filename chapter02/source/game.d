@@ -41,7 +41,8 @@ struct Game
 {
     @nogc:
 
-    import containers.hashmap : HashMap;
+    // import containers.hashmap : HashMap;
+    import gameprogd.containers.hashmap : HashMap;
     import containers.dynamicarray : DynamicArray;
 
     // // Map of textures loaded
