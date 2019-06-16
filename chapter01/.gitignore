@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/chapter01
+chapter01.so
+chapter01.dylib
+chapter01.dll
+chapter01.a
+chapter01.lib
+chapter01-test-*
+*.exe
+*.o
+*.obj
+*.lst

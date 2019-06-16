@@ -1,0 +1,14 @@
+{
+    "authors": [
+        "karita"
+    ],
+    "copyright": "Copyright © 2019, karita",
+    "dependencies": {
+        "bindbc-sdl": {"path": "../bindbc-sdl"}
+    },
+    "versions": ["BindSDL_Static"],
+    "libs": ["SDL2"],
+    "description": "A minimal D application.",
+    "license": "BSL-1.0",
+    "name": "chapter01"
+}
