@@ -4,11 +4,12 @@
     ],
     "copyright": "Copyright © 2019, karita",
     "dependencies": {
-        "bindbc-sdl": "~>0.9.1"
+        "bindbc-sdl": "~>0.9.1",
+        "emsi_containers": "~>0.7.0"
     },
-    "versions": ["BindSDL_Static"],
-    "libs": ["SDL2"],
+    "versions": ["BindSDL_Static", "BindSDL_Image"],
+    "libs": ["SDL2", "SDL2_image"],
     "description": "A minimal D application.",
     "license": "BSL-1.0",
-    "name": "chapter01"
+    "name": "chapter02"
 }

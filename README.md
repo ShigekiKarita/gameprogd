@@ -1,10 +1,10 @@
 # Game Programming in D
 
-translating C++ codes in  https://github.com/gameprogcpp/code
+translating C++ codes in https://github.com/gameprogcpp/code
 
 ## requirements
 
-For Ubuntu `sudo apt-get install libsdl2-dev`
+For Ubuntu `sudo apt-get install "libsdl2-*-dev"`
 
 For Windows and OSX, read the book.
 
@@ -17,3 +17,4 @@ dub run
 ```
 
 see chapterXX/README.md for details.
+

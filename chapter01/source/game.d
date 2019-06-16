@@ -156,6 +156,7 @@ struct Game
         mTicksCount = SDL_GetTicks();
 
         // Update paddle position based on direction
+        const size = this.windowSize();
         if (mPaddleDir != 0)
         {
             mPaddlePos.y += mPaddleDir * 300.0f * deltaTime;
@@ -164,9 +165,9 @@ struct Game
             {
                 mPaddlePos.y = paddleH/2.0f + thickness;
             }
-            else if (mPaddlePos.y > (768.0f - paddleH/2.0f - thickness))
+            else if (mPaddlePos.y > (size.height - paddleH/2.0f - thickness))
             {
-                mPaddlePos.y = 768.0f - paddleH/2.0f - thickness;
+                mPaddlePos.y = size.height - paddleH/2.0f - thickness;
             }
         }
 
@@ -178,7 +179,6 @@ struct Game
         auto diff = mPaddlePos.y - mBallPos.y;
         // Take absolute value of difference
         diff = (diff > 0.0f) ? diff : -diff;
-        const size = this.windowSize();
         if (// Our y-difference is small enough
             diff <= paddleH / 2.0f &&
             // We are in the correct x-position
