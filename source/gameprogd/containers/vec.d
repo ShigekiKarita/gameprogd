@@ -157,7 +157,7 @@ struct SmallVec(T, size_t N, Allocator = Mallocator)
 {
     import stdx.allocator.showcase : StackFront;
 
-    enum stackSize = T.sizeof * (N + Allocator.alignment - 1) + Allocator.alignment;
+    enum stackSize = T.sizeof * (N + Allocator.alignment - 1);
 
     Vec!(T, StackFront!(stackSize, Allocator)) _base;
 
