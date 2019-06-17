@@ -1,45 +1,14 @@
 module gameprogd.containers.hashmap;
 
-import core.memory : pureFree, pureMalloc;
+import stdx.allocator.mallocator : Mallocator;
 import gameprogd.containers.vec : Vec;
+import gameprogd.hash : genFNV1a64Hash;
 
-// A variant of the FNV-1a (64) hashing algorithm.
-auto genHash(T : const(char)[])(T value) pure nothrow @nogc @trusted
+
+struct HashMap(K, V, alias hashFun = genFNV1a64Hash, Allocator = Mallocator)
 {
-    // import containers.internal.hash : generateHash;
-    // return generateHash(value);
-    hash_t h = 0xcbf29ce484222325;
-    foreach (const ubyte c; cast(ubyte[]) value)
-    {
-        h ^= ((c - ' ') * 13);
-        h *= 0x100000001b3;
-    }
-    return h;
-}
+    enum _allocator = Allocator.instance;
 
-auto genHash(T)(const auto ref T value) pure nothrow @nogc @trusted
-{
-    const p = cast(const(char)*) &value;
-    const n = T.sizeof / char.sizeof;
-    return genHash(p[0 .. n]);
-}
-
-@safe @nogc unittest
-{
-    import std.typecons : tuple;
-
-    assert(genHash("hihi") == genHash("hihi"));
-    assert(genHash("hihi") != genHash("hih"));
-
-    assert(genHash(1) == genHash(1));
-    assert(genHash(1) != genHash(2));
-
-    assert(genHash(tuple("foo", 1)) == genHash(tuple("foo", 1)));
-    assert(genHash(tuple("foo", 1)) != genHash(tuple("foo", 2)));
-}
-
-struct HashMap(K, V, alias hashFun = genHash)
-{
     struct Pair
     {
         K key;
@@ -60,7 +29,7 @@ struct HashMap(K, V, alias hashFun = genHash)
     {
         foreach (ref p; this._storages.slice)
         {
-            pureFree(p);
+            _allocator.deallocate(p.ptr[0 .. Storage.sizeof]);
             p = null;
         }
     }
@@ -72,7 +41,7 @@ struct HashMap(K, V, alias hashFun = genHash)
         this._storages.resize(n + 1);
         foreach (ref s; this._storages.slice[prev..$])
         {
-            s = cast(Storage*) pureMalloc(Storage.sizeof);
+            s = cast(Storage*) _allocator.allocate(Storage.sizeof);
             s.reset(false);
         }
     }

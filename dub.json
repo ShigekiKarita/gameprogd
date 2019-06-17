@@ -1,0 +1,12 @@
+{
+    "authors": [
+        "karita"
+    ],
+    "copyright": "Copyright © 2019, karita",
+    "dependencies": {
+        "stdx-allocator": "~>3.0.2"
+    },
+    "description": "game programming in D",
+    "license": "BSL-1.0",
+    "name": "gameprogd"
+}

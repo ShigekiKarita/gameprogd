@@ -1,1 +1,12 @@
+*
 dub.selections.json
+
+!*/
+!*.md
+!*.d
+!*.png
+!Assets/*
+
+!dub.json
+!.gitignore
+
