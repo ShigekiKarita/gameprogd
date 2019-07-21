@@ -5,11 +5,11 @@
     "copyright": "Copyright © 2019, karita",
     "dependencies": {
         "bindbc-sdl": "~>0.9.1",
-        "emsi_containers": "~>0.8.0-alpha",
         "gameprogd": {"path": ".."}
     },
     "versions": ["BindSDL_Static", "BindSDL_Image"],
     "libs": ["SDL2", "SDL2_image"],
+    "lflags-windows": ["-L..\\win64"],
     "description": "A minimal D application.",
     "license": "BSL-1.0",
     "name": "chapter02"

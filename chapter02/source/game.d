@@ -39,18 +39,18 @@ struct Game
 
     // import containers.hashmap : HashMap;
     import gameprogd.containers.hashmap : HashMap;
-    import containers.dynamicarray : DynamicArray;
+    // import containers.dynamicarray : DynamicArray;
 
     // // Map of textures loaded
     // HashMap!(string, SDL_Texture*) mTextures;
 
     // All the actors in the game
-    DynamicArray!Actor mActors;
+    //DynamicArray!Actor mActors;
     // Any pending actors
-    DynamicArray!Actor mPendingActors;
+    //DynamicArray!Actor mPendingActors;
 
     // All the sprite components drawn
-    DynamicArray!SpriteComponent mSprites;
+    //DynamicArray!SpriteComponent mSprites;
 
     // Window created by SDL
     SDL_Window* mWindow;
